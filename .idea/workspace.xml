@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cba0eadd-d1f7-4926-8eba-2d2822d6eed2" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dags/dag.py" afterPath="$PROJECT_DIR$/dags/dag.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/other/build_statistics.py" afterPath="$PROJECT_DIR$/other/build_statistics.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,8 +27,8 @@
       <file leaf-file-name="dag.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dags/dag.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="69" column="87" lean-forward="false" selection-start-line="69" selection-start-column="87" selection-end-line="69" selection-end-column="87" />
+            <state relative-caret-position="810">
+              <caret line="54" column="64" lean-forward="false" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
               <folding>
                 <element signature="e#0#21#0" expanded="true" />
               </folding>
@@ -184,8 +184,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/dags/dag.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="69" column="87" lean-forward="false" selection-start-line="69" selection-start-column="87" selection-end-line="69" selection-end-column="87" />
+        <state relative-caret-position="810">
+          <caret line="54" column="64" lean-forward="false" selection-start-line="54" selection-start-column="64" selection-end-line="54" selection-end-column="64" />
           <folding>
             <element signature="e#0#21#0" expanded="true" />
           </folding>

@@ -3,7 +3,8 @@ import datetime as dt
 from airflow import DAG
 # from airflow.operators.python_operator import PythonOperator
 from godatadriven.operators.postgres_to_gcs import PostgresToGoogleCloudStorageOperator
-from airflow.contrib.operators.dataproc_operator imort (
+from airflow.utils.trigger_rule import TriggerRule
+from airflow.contrib.operators.dataproc_operator import(
     DataprocClusterCreateOperator,
     DataprocClusterDeleteOperator,
     DataProcPySparkOperator
@@ -51,13 +52,12 @@ dataproc_create_cluster = DataprocClusterCreateOperator(
 
 compute_aggregates = DataProcPySparkOperator(
     task_id="compute_aggregates",
-    main='gs://gdd-training/build_statistics.py',
+    main='gs://europe-west1-training-airfl-68071199-bucket/other/build_statistics.py',
     cluster_name="dataproc_cluster_dag_training_{{ds}}",
     arguments=["{{ ds_nodash }}"],
     dag=dag
 )
 
-from airflow.utils.trigger_rule import TriggerRule
 
 dataproc_delete_cluster = DataprocClusterDeleteOperator(
     task_id="delete_dataproc_cluster",
