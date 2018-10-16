@@ -43,7 +43,7 @@ pgsl_to_gcs = PostgresToGoogleCloudStorageOperator(
 
 dataproc_create_cluster = DataprocClusterCreateOperator(
     task_id="create_dataproc_cluster",
-    cluster_name="dataproc_cluster_dag_training_{{ ds }}",
+    cluster_name="dataproc-cluster-dag-training-{{ ds }}",
     project_id="airflowbolcom-b9aabd6971d488d9",
     num_workers=2,
     zone="europe-west1-d",
@@ -53,7 +53,7 @@ dataproc_create_cluster = DataprocClusterCreateOperator(
 compute_aggregates = DataProcPySparkOperator(
     task_id="compute_aggregates",
     main='gs://europe-west1-training-airfl-68071199-bucket/other/build_statistics_simple.py',
-    cluster_name="dataproc_cluster_dag_training_{{ ds }}",
+    cluster_name="dataproc-cluster-dag-training-{{ ds }}",
     arguments=["{{ ds_nodash }}"],
     dag=dag
 )
@@ -61,7 +61,7 @@ compute_aggregates = DataProcPySparkOperator(
 
 dataproc_delete_cluster = DataprocClusterDeleteOperator(
     task_id="delete_dataproc_cluster",
-    cluster_name="dataproc_cluster_dag_training_{{ ds }}",
+    cluster_name="dataproc-cluster-dag-training-{{ ds }}",
     project_id="airflowbolcom-b9aabd6971d488d9",
     trigger_rule=TriggerRule.ALL_DONE,
     dag=dag
