@@ -34,6 +34,3 @@ pgsl_to_gcs = PostgresToGoogleCloudStorageOperator(
     filename="data_{{ds_nodash}}/land_registry_price.json",
     dag=dag
 )
-
-
-
