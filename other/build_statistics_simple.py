@@ -43,7 +43,7 @@ aggregation = spark.sql(
         county,
         district,
         city,
-        AVG(price)
+        AVG(price) as price
     FROM
         land_registry_price_paid_uk
     WHERE
