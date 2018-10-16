@@ -80,4 +80,5 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
 )
 
 
-pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster >> bucket_to_bq
+pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
+compute_aggregates >> bucket_to_bq
