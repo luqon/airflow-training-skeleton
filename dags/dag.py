@@ -4,6 +4,7 @@ from airflow import DAG
 # from airflow.operators.python_operator import PythonOperator
 from godatadriven.operators.postgres_to_gcs import PostgresToGoogleCloudStorageOperator
 from airflow.utils.trigger_rule import TriggerRule
+from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
 from airflow.contrib.operators.dataproc_operator import (
     DataprocClusterCreateOperator,
     DataprocClusterDeleteOperator,
@@ -12,11 +13,11 @@ from airflow.contrib.operators.dataproc_operator import (
 
 
 dag = DAG(
-    dag_id="my_second_dag",
+    dag_id="my_third_dag",
     schedule_interval="30 7 * * *",
     default_args={
         "owner": "airflow",
-        "start_date": dt.datetime(2018, 10, 1),
+        "start_date": dt.datetime(2018, 10, 10),
         "depends_on_past": True,
         "email_on_failure": True,
         "email": "airflow_errors@myorganisation.com",
@@ -67,4 +68,15 @@ dataproc_delete_cluster = DataprocClusterDeleteOperator(
     dag=dag
 )
 
-pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
+bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
+    task_id="gcs_to_bq",
+    bucket="airflow_training_data",
+    source_objects="average_prices/transfer_date={{ds_nodash}}/",
+    destination_project_dataset_table="airflowbolcom-b9aabd6971d488d9:airflow_training_dataset.land_registry_${{ ds_nodash }}",
+    source_format="parquet",
+    write_disposition="OVERWRITE",
+    dag=dag
+)
+
+
+pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster >> bucket_to_bq
