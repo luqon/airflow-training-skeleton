@@ -2,6 +2,7 @@ import datetime as dt
 
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from godatadriven.operators.postgres_to_gcs import PostgresToGoogleCloudStorageOperator
 
 
 dag = DAG(
@@ -21,6 +22,18 @@ def print_exec_date(**context):
     print(context["execution_date"])
 
 
-my_task = PythonOperator(
-    task_id="task_name", python_callable=print_exec_date, provide_context=True, dag=dag
+# my_task = PythonOperator(
+#     task_id="task_name", python_callable=print_exec_date, provide_context=True, dag=dag
+# )
+
+pgsl_to_gcs = PostgresToGoogleCloudStorageOperator(
+    task_id="export_data_to_bucket",
+    postgres_conn_id="training_postgres",
+    sql="SELECT * FROM gdd.land_registry_price_paid_uk WHERE transfer_date = '{{ ds }}'",
+    bucket="airflow_training_data",
+    filename="data_{{ds_nodash}}/land_registry_price.json",
+    dag=dag
 )
+
+
+
