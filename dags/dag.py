@@ -29,7 +29,7 @@ def print_exec_date(**context):
 pgsl_to_gcs = PostgresToGoogleCloudStorageOperator(
     task_id="export_data_to_bucket",
     postgres_conn_id="training_postgres",
-    sql="SELECT * FROM gdd.land_registry_price_paid_uk WHERE transfer_date = '{{ ds }}'",
+    sql="SELECT * FROM land_registry_price_paid_uk WHERE transfer_date = '{{ ds }}'",
     bucket="airflow_training_data",
     filename="data_{{ds_nodash}}/land_registry_price.json",
     dag=dag
