@@ -68,12 +68,12 @@ dataproc_delete_cluster = DataprocClusterDeleteOperator(
     dag=dag
 )
 
+dest_table = "airflowbolcom-b9aabd6971d488d9:airflow_training_dataset.land_registry_${{ ds_nodash }}"
 bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
     task_id="gcs_to_bq",
     bucket="airflow_training_data",
     source_objects="average_prices/transfer_date={{ds_nodash}}/",
-    destination_project_dataset_table=\
-        "airflowbolcom-b9aabd6971d488d9:airflow_training_dataset.land_registry_${{ ds_nodash }}",
+    destination_project_dataset_table=dest_table,
     source_format="parquet",
     write_disposition="WRITE_TRUNCATE",
     dag=dag
