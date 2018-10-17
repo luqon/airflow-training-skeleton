@@ -6,6 +6,7 @@ from airflow.models import BaseOperator
 class HttpToGcsOperator(BaseOperator):
 
     template_fields = ('endpoint', 'bucket', 'bucket_path')
+    
     def __init__(self, endpoint, bucket, bucket_path, method='GET', *args, **kwargs):
         self.endpoint = endpoint
         self.bucket = bucket
@@ -15,6 +16,6 @@ class HttpToGcsOperator(BaseOperator):
     def execute(self):
         http_hook = HttpHook()
         response = http_hook.run(self.endpoint, self.method)
-
+        print(response)
         # gcs_hook = GoogleCloudStorageHook()
         # gcs_hook.upload_file(response, self.bucket, self.bucket_path)
