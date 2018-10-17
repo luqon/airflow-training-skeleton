@@ -81,11 +81,12 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
 )
 
 endpoint="https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR" #noqa: E501
-bla = HttpToGcsOperator(endpoint=endpoint,
-                        bucket="airflow_training_data",
-                        bucket_path="currencies/{{ds_nodash}}_{from_currency}_{to_currency}.json",
-                        dag=dag
-                        )
+bla = HttpToGcsOperator(
+    endpoint=endpoint,
+    bucket="airflow_training_data",
+    bucket_path="currencies/{{ds_nodash}}_GB_EUR.json",
+    dag=dag
+)
 
 pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
 compute_aggregates >> bucket_to_bq

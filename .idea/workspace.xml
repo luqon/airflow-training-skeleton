@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cba0eadd-d1f7-4926-8eba-2d2822d6eed2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/airflow-training-skeleton.iml" afterPath="$PROJECT_DIR$/.idea/airflow-training-skeleton.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dags/dag.py" afterPath="$PROJECT_DIR$/dags/dag.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/dags/httptogcs_operator.py" afterPath="$PROJECT_DIR$/dags/httptogcs_operator.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,22 +24,26 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dag.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dag.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dags/dag.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-              <folding />
+            <state relative-caret-position="422">
+              <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+              <folding>
+                <element signature="e#0#21#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="httptogcs_operator.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="httptogcs_operator.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/dags/httptogcs_operator.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-              <folding />
+            <state relative-caret-position="285">
+              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -111,8 +113,8 @@
         <option value="$PROJECT_DIR$/cloudbuild.yaml" />
         <option value="$PROJECT_DIR$/other/build_statistics.py" />
         <option value="$PROJECT_DIR$/other/build_statistics_simple.py" />
-        <option value="$PROJECT_DIR$/dags/httptogcs_operator.py" />
         <option value="$PROJECT_DIR$/dags/dag.py" />
+        <option value="$PROJECT_DIR$/dags/httptogcs_operator.py" />
       </list>
     </option>
   </component>
@@ -289,19 +291,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dags/httptogcs_operator.py">
+    <entry file="file://$PROJECT_DIR$/dags/dag.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="15" lean-forward="false" selection-start-line="0" selection-start-column="15" selection-end-line="0" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="422">
+          <caret line="88" column="1" lean-forward="true" selection-start-line="88" selection-start-column="1" selection-end-line="88" selection-end-column="1" />
+          <folding>
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dags/dag.py">
+    <entry file="file://$PROJECT_DIR$/dags/httptogcs_operator.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
+        <state relative-caret-position="285">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
