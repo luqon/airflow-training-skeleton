@@ -8,6 +8,7 @@ class HttpToGcsOperator(BaseOperator):
     template_fields = ('endpoint', 'bucket', 'bucket_path')
 
     def __init__(self, endpoint, bucket, bucket_path, method='GET', *args, **kwargs):
+        super(HttpToGcsOperator, self).__init__(*args, **kwargs)
         self.endpoint = endpoint
         self.bucket = bucket
         self.bucket_path = bucket_path
