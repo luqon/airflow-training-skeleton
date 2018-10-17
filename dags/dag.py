@@ -5,7 +5,8 @@ from airflow import DAG
 from godatadriven.operators.postgres_to_gcs import PostgresToGoogleCloudStorageOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
-from httptogcs_operator import HttpToGcsOperator
+from airflow.contrib.operators.dataflow_operator import DataFlowPythonOperator
+# from httptogcs_operator import HttpToGcsOperator
 from airflow.contrib.operators.dataproc_operator import (
     DataprocClusterCreateOperator,
     DataprocClusterDeleteOperator,
@@ -80,14 +81,28 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
     dag=dag
 )
 
-endpoint = "https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR"  # noqa: E501
-bla = HttpToGcsOperator(
-    task_id="blaat",
-    endpoint=endpoint,
-    bucket="airflow_training_data",
-    bucket_path="currencies/{{ds_nodash}}_GB_EUR.json",
+# currencies = ['USD', 'EUR']
+# endpoint = "https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR"  # noqa: E501
+# bla = HttpToGcsOperator(
+#     task_id="blaat",
+#     endpoint=endpoint,
+#     bucket="airflow_training_data",
+#     bucket_path="currencies/{{ds_nodash}}_GB_EUR.json",
+#     dag=dag
+# )
+
+load_into_bigquery = DataFlowPythonOperator(
+    task_id="dataflow_to_bq",
+    dataflow_default_options={"input": "data_{{ds_nodash}}/*.json",
+                              "bucket": "dataflow_training_data",
+                              "project": "airflowbolcom-b9aabd6971d488d9",
+                              "dataset": "airflow_training_dataset",
+                              "table": "dataflow_output_${{ds_nodash}}"
+                              },
+    py_file="gs://airflow-training-data/dataflow_job.py",
     dag=dag
 )
 
 pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
 compute_aggregates >> bucket_to_bq
+pgsl_to_gcs >> load_into_bigquery
