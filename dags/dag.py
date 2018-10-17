@@ -80,7 +80,7 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
     dag=dag
 )
 
-endpoint="https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR" #noqa: E501
+endpoint = "https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR"  # noqa: E501
 bla = HttpToGcsOperator(
     endpoint=endpoint,
     bucket="airflow_training_data",
