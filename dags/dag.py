@@ -116,6 +116,7 @@ def get_day(**context):
 branching = BranchPythonOperator(
     task_id="branching",
     python_callable=get_day,
+    provide_context=True,
     dag=dag
 )
 
