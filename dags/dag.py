@@ -129,6 +129,19 @@ joining = DummyOperator(
 for option in options:
     branching >> DummyOperator(task_id=option, dag=dag) >> joining
 
+
+
+passing = KubernetesPodOperator(namespace='default',
+                          image="Python:3.6",
+                          cmds=["Python","-c"],
+                          arguments=["print('hello world this is pod speaking')"],
+                          labels={"foo": "bar"},
+                          name="passing-test",
+                          task_id="passing-task",
+                          get_logs=True,
+                          dag=dag
+                          )
+
 pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
 compute_aggregates >> bucket_to_bq
 pgsl_to_gcs >> load_into_bigquery
