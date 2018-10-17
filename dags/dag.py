@@ -5,7 +5,7 @@ from airflow import DAG
 from godatadriven.operators.postgres_to_gcs import PostgresToGoogleCloudStorageOperator
 from airflow.utils.trigger_rule import TriggerRule
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
-from .httptogcs_operator import HttpToGcsOperator
+from dags.httptogcs_operator import HttpToGcsOperator
 from airflow.contrib.operators.dataproc_operator import (
     DataprocClusterCreateOperator,
     DataprocClusterDeleteOperator,
