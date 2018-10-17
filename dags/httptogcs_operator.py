@@ -6,7 +6,7 @@ from airflow.models import BaseOperator
 class HttpToGcsOperator(BaseOperator):
 
     template_fields = ('endpoint', 'bucket', 'bucket_path')
-    
+
     def __init__(self, endpoint, bucket, bucket_path, method='GET', *args, **kwargs):
         self.endpoint = endpoint
         self.bucket = bucket
