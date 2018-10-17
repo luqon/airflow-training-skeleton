@@ -93,7 +93,8 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
 
 load_into_bigquery = DataFlowPythonOperator(
     task_id="dataflow_to_bq",
-    dataflow_default_options={"input": "data_{{ds_nodash}}/*.json",
+    dataflow_default_options={"region": "europe-west1",
+                              "input": "gs://dataflow_training_data/data_{{ds_nodash}}/*.json",
                               "bucket": "dataflow_training_data",
                               "project": "airflowbolcom-b9aabd6971d488d9",
                               "dataset": "airflow_training_dataset",
