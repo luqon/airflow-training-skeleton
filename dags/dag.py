@@ -7,6 +7,8 @@ from airflow.utils.trigger_rule import TriggerRule
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
 from airflow.contrib.operators.dataflow_operator import DataFlowPythonOperator
 # from httptogcs_operator import HttpToGcsOperator
+from airflow.operators.python.operator import BranchPythonOperator
+from airflow.operators.dummy_operator import DummyOperator
 from airflow.contrib.operators.dataproc_operator import (
     DataprocClusterCreateOperator,
     DataprocClusterDeleteOperator,
@@ -104,6 +106,24 @@ load_into_bigquery = DataFlowPythonOperator(
     py_file="gs://airflow-training-data/dataflow_job.py",
     dag=dag
 )
+
+options = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
+
+branching = BranchPythonOperator(
+    task_id="branching",
+    python_callable=dt.datetime.strptime('{{ ds }}', '%Y-%m-%d').strftime('%A'),
+    dag=dag
+)
+
+joining = DummyOperator(
+    task_id='joining',
+    trigger_rule=TriggerRule.ONE_SUCCESS,
+    dag=dag
+)
+
+for option in options:
+    branching >> DummyOperator(task_id=option, dag=dag) >> joining
 
 pgsl_to_gcs >> dataproc_create_cluster >> compute_aggregates >> dataproc_delete_cluster
 compute_aggregates >> bucket_to_bq
