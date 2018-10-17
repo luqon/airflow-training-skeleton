@@ -109,10 +109,12 @@ load_into_bigquery = DataFlowPythonOperator(
 
 options = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 
+def get_day(**context):
+    return context['execution_date'].strftime('%A')
 
 branching = BranchPythonOperator(
     task_id="branching",
-    python_callable=dt.datetime.strptime('{{ ds }}', '%Y-%m-%d').strftime('%A'),
+    python_callable=get_day,
     dag=dag
 )
 
