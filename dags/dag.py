@@ -98,7 +98,8 @@ load_into_bigquery = DataFlowPythonOperator(
                               "bucket": "dataflow_training_data",
                               "project": "airflowbolcom-b9aabd6971d488d9",
                               "dataset": "airflow_training_dataset",
-                              "table": "dataflow_output_${{ds_nodash}}"
+                              "table": "dataflow_output_${{ds_nodash}}",
+                              "name": "write-to-bq-{{ ds }}"
                               },
     py_file="gs://airflow-training-data/dataflow_job.py",
     dag=dag
