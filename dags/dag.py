@@ -134,7 +134,7 @@ for option in options:
 passing = KubernetesPodOperator(
     namespace='default',
     image="Python:3.6",
-    cmds=["Python","-c"],
+    cmds=["Python", "-c"],
     arguments=["print('hello world this is pod speaking')"],
     labels={"foo": "bar"},
     name="passing-test",
