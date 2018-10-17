@@ -7,7 +7,7 @@ from airflow.utils.trigger_rule import TriggerRule
 from airflow.contrib.operators.gcs_to_bq import GoogleCloudStorageToBigQueryOperator
 from airflow.contrib.operators.dataflow_operator import DataFlowPythonOperator
 # from httptogcs_operator import HttpToGcsOperator
-from airflow.operators.python.operator import BranchPythonOperator
+from airflow.operators.python_operator import BranchPythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.contrib.operators.dataproc_operator import (
     DataprocClusterCreateOperator,
