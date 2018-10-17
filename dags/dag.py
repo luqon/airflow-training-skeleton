@@ -112,6 +112,7 @@ options = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', '
 def get_day(**context):
     return context['execution_date'].strftime('%A')
 
+
 branching = BranchPythonOperator(
     task_id="branching",
     python_callable=get_day,
