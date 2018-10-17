@@ -82,7 +82,7 @@ bucket_to_bq = GoogleCloudStorageToBigQueryOperator(
 
 endpoint = "https://europe-west1-gdd-airflow-training.cloudfunctions.net/airflow-training-transform-valutas?date=1970-01-01&from=GBP&to=EUR"  # noqa: E501
 bla = HttpToGcsOperator(
-    task_id='blaat',
+    task_id="blaat",
     endpoint=endpoint,
     bucket="airflow_training_data",
     bucket_path="currencies/{{ds_nodash}}_GB_EUR.json",
